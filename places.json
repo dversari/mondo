@@ -1,0 +1,21 @@
+[
+  {
+    "id": "esempio-duomo-pistoia",
+    "esempio": true,
+    "nome": "Cattedrale di San Zeno",
+    "tipo": "culto",
+    "lat": 43.93346,
+    "lng": 10.91714,
+    "luogo": "Piazza del Duomo, Pistoia · Toscana, Italia",
+    "data": "",
+    "sintesi": "Duomo di Pistoia, affacciato su una delle piazze medievali più integre della Toscana. Facciata romanica a loggiato con portico, accanto al campanile nato come torre di guardia.",
+    "punti": [
+      "Impianto romanico, rimaneggiato più volte nei secoli successivi",
+      "All'interno l'Altare argenteo di San Jacopo, capolavoro di oreficeria medievale",
+      "Il campanile fu in origine una torre difensiva, poi sopraelevato"
+    ],
+    "curiosita": "Scheda di esempio, creata per mostrare l'aspetto delle schede: verrà sostituita dai luoghi delle tue foto.",
+    "foto": null,
+    "fonti": []
+  }
+]
