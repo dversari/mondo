@@ -137,6 +137,13 @@ let baseName='Carta';try{baseName=localStorage.getItem('mondo-base')||'Carta';}c
 if(!BASE[baseName])baseName='Carta';
 BASE[baseName].addTo(map);
 L.control.layers(BASE,{"Etichette":LABELS},{position:'bottomleft'}).addTo(map);
+// se CARTO rifiuta i riquadri (chiave non valida o sito non autorizzato) passa a "Grigio"
+(function(){let err=0,ok=0;const c=BASE["Carta"];
+  c.on('tileload',()=>ok++);
+  c.on('tileerror',()=>{err++;if(err>=4&&ok===0&&map.hasLayer(c)){map.removeLayer(c);BASE["Grigio"].addTo(map);
+    const h=document.getElementById('hint');h.textContent='Carta CARTO non disponibile: uso la base Grigio';h.classList.remove('hide');
+    setTimeout(()=>h.classList.add('hide'),6000);}});
+})();
 map.on('baselayerchange',e=>{try{localStorage.setItem('mondo-base',e.name);}catch(_){}});
 let places=[], markers=[], hidden=new Set(), selected=null;
 const card=document.getElementById('card');
