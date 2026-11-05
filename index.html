@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>Mondo</title>
+<title>Versaghini’s places</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 
 :root{
@@ -16,9 +16,9 @@
   --c-museo:#b8862b; --c-evento:#d14f8a; --c-curiosita:#1f9a95; --c-cibo:#e07b2a; --c-altro:#6b6b6b;
 }
 *{box-sizing:border-box}
-html,body{margin:0;height:100%;background:var(--sea);font-family:Inter,system-ui,sans-serif;color:var(--ink)}
+html,body{margin:0;height:100%;background:var(--sea);font-family:Roboto,-apple-system,BlinkMacSystemFont,sans-serif;color:var(--ink)}
 #map{position:fixed;inset:0;background:var(--sea)}
-.leaflet-container{background:var(--sea);font-family:Inter,system-ui,sans-serif}
+.leaflet-container{background:var(--sea);font-family:Roboto,-apple-system,BlinkMacSystemFont,sans-serif}
 .leaflet-control-layers{border-radius:12px!important;border:1px solid var(--line)!important;font-size:13px}
 .leaflet-control-zoom a{color:var(--ink)!important}
 .leaflet-control-attribution{background:rgba(255,253,248,.7)!important;font-size:10px;color:var(--muted)}
@@ -26,9 +26,9 @@ html,body{margin:0;height:100%;background:var(--sea);font-family:Inter,system-ui
 /* barra superiore */
 #top{position:fixed;top:12px;left:12px;right:12px;z-index:900;display:flex;gap:8px;align-items:flex-start;pointer-events:none}
 .brand{pointer-events:auto;background:rgba(255,253,248,.92);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:14px;padding:8px 14px;box-shadow:0 4px 18px rgba(60,50,30,.08)}
-.brand h1{margin:0;font:700 18px/1.1 Fraunces,serif;letter-spacing:.2px}
+.brand h1{margin:0;font:500 18px/1.1 Roboto,-apple-system,BlinkMacSystemFont,sans-serif;letter-spacing:.2px}
 .brand small{color:var(--muted);font-size:11.5px}
-#legendBtn{pointer-events:auto;margin-left:auto;background:rgba(255,253,248,.92);border:1px solid var(--line);border-radius:14px;padding:9px 12px;font:600 13px Inter;color:var(--ink);cursor:pointer;box-shadow:0 4px 18px rgba(60,50,30,.08)}
+#legendBtn{pointer-events:auto;margin-left:auto;background:rgba(255,253,248,.92);border:1px solid var(--line);border-radius:14px;padding:9px 12px;font:500 13px Roboto,sans-serif;color:var(--ink);cursor:pointer;box-shadow:0 4px 18px rgba(60,50,30,.08)}
 #legend{position:fixed;top:64px;right:12px;z-index:900;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px;box-shadow:0 10px 30px rgba(60,50,30,.15);display:none;min-width:190px}
 #legend.open{display:block}
 .lg-row{display:flex;align-items:center;gap:9px;padding:6px 6px;border-radius:8px;cursor:pointer;font-size:13.5px;user-select:none}
@@ -44,7 +44,7 @@ html,body{margin:0;height:100%;background:var(--sea);font-family:Inter,system-ui
 .pin.small svg{display:none}
 .pin.sel{transform:rotate(-45deg) scale(1.25)}
 .pin-wrap{background:none;border:none}
-.pin-label{position:absolute;left:calc(var(--s) + 8px);top:50%;transform:translateY(-50%);white-space:nowrap;font:600 12px Inter;color:var(--ink);background:rgba(255,253,248,.9);padding:2px 7px;border-radius:7px;border:1px solid var(--line);pointer-events:none}
+.pin-label{position:absolute;left:calc(var(--s) + 8px);top:50%;transform:translateY(-50%);white-space:nowrap;font:500 12px Roboto,sans-serif;color:var(--ink);background:rgba(255,253,248,.9);padding:2px 7px;border-radius:7px;border:1px solid var(--line);pointer-events:none}
 
 /* scheda */
 #card{position:fixed;z-index:1000;background:var(--card);box-shadow:0 18px 50px rgba(40,30,10,.22);border:1px solid var(--line);overflow:auto;transition:transform .28s cubic-bezier(.2,.8,.2,1),opacity .2s;opacity:0;pointer-events:none}
@@ -63,20 +63,20 @@ html,body{margin:0;height:100%;background:var(--sea);font-family:Inter,system-ui
 .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hero .ico{position:absolute;right:18px;top:18px;width:54px;height:54px;opacity:.22;fill:#fff}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 45%,rgba(0,0,0,.45))}
-.hero .chip{position:relative;z-index:1;margin:14px 16px;background:rgba(255,255,255,.92);color:var(--c);font:600 11.5px Inter;letter-spacing:.6px;text-transform:uppercase;padding:5px 10px;border-radius:99px}
+.hero .chip{position:relative;z-index:1;margin:14px 16px;background:rgba(255,255,255,.92);color:var(--c);font:500 11.5px Roboto,sans-serif;letter-spacing:.6px;text-transform:uppercase;padding:5px 10px;border-radius:99px}
 .close{position:absolute;z-index:2;top:12px;left:12px;width:32px;height:32px;border-radius:50%;border:none;background:rgba(255,255,255,.92);font-size:18px;line-height:32px;cursor:pointer;color:var(--ink)}
 .body{padding:18px 20px 22px}
-.body h2{font:700 25px/1.15 Fraunces,serif;margin:0 0 6px}
+.body h2{font:300 27px/1.15 Roboto,-apple-system,BlinkMacSystemFont,sans-serif;margin:0 0 6px}
 .where{color:var(--muted);font-size:13.5px;display:flex;gap:6px;align-items:center}
 .where svg{width:14px;height:14px;fill:var(--c);flex:none}
-.sintesi{font-size:15px;line-height:1.55;margin:14px 0 4px}
+.sintesi{font-size:15px;font-weight:300;line-height:1.55;margin:14px 0 4px}
 .sec{margin-top:16px}
-.sec h3{font:600 11.5px Inter;letter-spacing:1px;text-transform:uppercase;color:var(--c);margin:0 0 8px}
+.sec h3{font:500 11.5px Roboto,sans-serif;letter-spacing:1px;text-transform:uppercase;color:var(--c);margin:0 0 8px}
 .sec ul{margin:0;padding:0;list-style:none}
-.sec li{position:relative;padding:5px 0 5px 18px;font-size:14px;line-height:1.45;border-bottom:1px dashed var(--line)}
+.sec li{font-weight:300;position:relative;padding:5px 0 5px 18px;font-size:14px;line-height:1.45;border-bottom:1px dashed var(--line)}
 .sec li:last-child{border-bottom:none}
 .sec li::before{content:"";position:absolute;left:2px;top:12px;width:7px;height:7px;border-radius:50%;background:var(--c)}
-.curio{background:color-mix(in srgb,var(--c) 9%,#fff);border-left:3px solid var(--c);padding:10px 12px;border-radius:0 10px 10px 0;font-size:14px;line-height:1.5}
+.curio{font-weight:300;background:color-mix(in srgb,var(--c) 9%,#fff);border-left:3px solid var(--c);padding:10px 12px;border-radius:0 10px 10px 0;font-size:14px;line-height:1.5}
 .meta{margin-top:18px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 14px}
 .meta a{color:var(--muted)}
 .badge{display:inline-block;margin-top:10px;font-size:11px;color:#8a5a00;background:#fff3d6;border:1px solid #f0d9a0;padding:3px 8px;border-radius:6px}
@@ -90,7 +90,7 @@ html,body{margin:0;height:100%;background:var(--sea);font-family:Inter,system-ui
 <div id="map"></div>
 
 <div id="top">
-  <div class="brand"><h1>Mondo</h1><small id="count">—</small></div>
+  <div class="brand"><h1>Versaghini’s places</h1><small id="count">—</small></div>
   <button id="legendBtn">Tipi ▾</button>
 </div>
 <div id="legend"></div>
