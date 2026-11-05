@@ -122,13 +122,17 @@ L.control.zoom({position:'bottomright'}).addTo(map);
 map.attributionControl.setPrefix('Leaflet');
 
 const ESRI='https://server.arcgisonline.com/ArcGIS/rest/services/';
+const CARTO_KEY='cb1_5303_1_39c008ae41c4ea3fce0469a1'; // chiave pubblica, limitata a dversari.github.io
+const CARTO=s=>`https://basemaps.cartocdn.com/rastertiles/${s}/{z}/{x}/{y}.png?key=${CARTO_KEY}`;
+const OSM_CARTO='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>';
 const BASE={
-  "Carta": L.tileLayer(ESRI+'Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',{maxZoom:16,
+  "Carta": L.tileLayer(CARTO('voyager_nolabels'),{maxZoom:20,attribution:OSM_CARTO}),
+  "Grigio": L.tileLayer(ESRI+'Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',{maxZoom:16,
     attribution:'Tiles &copy; Esri &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap'}),
   "Satellite": L.tileLayer(ESRI+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,
     attribution:'Tiles &copy; Esri &mdash; Vantor, Earthstar Geographics, GIS User Community'})
 };
-const LABELS=L.tileLayer(ESRI+'Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,pane:'overlayPane'});
+const LABELS=L.tileLayer(CARTO('voyager_only_labels'),{maxZoom:20,pane:'overlayPane',attribution:OSM_CARTO});
 let baseName='Carta';try{baseName=localStorage.getItem('mondo-base')||'Carta';}catch(e){}
 if(!BASE[baseName])baseName='Carta';
 BASE[baseName].addTo(map);
