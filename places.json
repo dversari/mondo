@@ -1,21 +1,26 @@
 [
   {
-    "id": "esempio-duomo-pistoia",
-    "esempio": true,
-    "nome": "Cattedrale di San Zeno",
-    "tipo": "culto",
-    "lat": 43.93346,
-    "lng": 10.91714,
-    "luogo": "Piazza del Duomo, Pistoia · Toscana, Italia",
-    "data": "",
-    "sintesi": "Duomo di Pistoia, affacciato su una delle piazze medievali più integre della Toscana. Facciata romanica a loggiato con portico, accanto al campanile nato come torre di guardia.",
+    "id": "fiera-arti-tessili-firenze-2026",
+    "nome": "Fiera delle Arti Tessili",
+    "tipo": "evento",
+    "lat": 43.76855,
+    "lng": 11.26246,
+    "luogo": "Piazza Santa Croce, Firenze · Toscana, Italia",
+    "quando": "7–8 novembre 2026 · 9:00–19:00",
+    "data": "2026-11-06",
+    "sintesi": "Mostra-mercato di lane, filati e tessuti naturali fatti a mano, organizzata dall'associazione La Fierucola. È l'erede della storica Fiera delle Lane di San Martino e torna ogni anno nei primi giorni di novembre.",
     "punti": [
-      "Impianto romanico, rimaneggiato più volte nei secoli successivi",
-      "All'interno l'Altare argenteo di San Jacopo, capolavoro di oreficeria medievale",
-      "Il campanile fu in origine una torre difensiva, poi sopraelevato"
+      "Protagonisti tessitori, filatori, tintori, feltrai, magliaie e sarte, con pezzi unici fatti a mano",
+      "Nelle edizioni passate: dimostrazioni di tessitura al telaio, tintura naturale e laboratori per bambini",
+      "Filo conduttore: fibre naturali, filiera corta e moda che dura"
     ],
-    "curiosita": "Scheda di esempio, creata per mostrare l'aspetto delle schede: verrà sostituita dai luoghi delle tue foto.",
+    "curiosita": "La fiera si tiene da oltre vent'anni. La scelta di Santa Croce richiama il ruolo di Firenze nel commercio di lane e tessuti, centrale per la città già nel Medioevo.",
     "foto": null,
-    "fonti": []
+    "fonti": [
+      {
+        "titolo": "gonews.it – edizione precedente",
+        "url": "https://www.gonews.it/?p=1195676"
+      }
+    ]
   }
 ]

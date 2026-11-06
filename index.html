@@ -173,11 +173,12 @@ function openCard(p){
   <div class="body">
     <h2>${esc(p.nome)}</h2>
     <div class="where"><svg viewBox="0 0 24 24">${PIN_ICO}</svg>${esc(p.luogo)}</div>
+    ${p.quando?`<div class="where" style="margin-top:4px"><svg viewBox="0 0 24 24"><path d="M7 2h2v2h6V2h2v2h3v18H4V4h3zm-1 7v11h12V9z"/></svg>${esc(p.quando)}</div>`:''}
     ${p.esempio?'<span class="badge">Scheda di esempio</span>':''}
     <p class="sintesi">${esc(p.sintesi)}</p>
     ${p.punti&&p.punti.length?`<div class="sec"><h3>Da sapere</h3><ul>${p.punti.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`:''}
     ${p.curiosita?`<div class="sec"><h3>Curiosità</h3><div class="curio">${esc(p.curiosita)}</div></div>`:''}
-    <div class="meta"><span>${p.lat.toFixed(4)}, ${p.lng.toFixed(4)}</span>${p.data?`<span>Foto: ${esc(p.data)}</span>`:''}
+    <div class="meta"><span>${p.lat.toFixed(4)}, ${p.lng.toFixed(4)}</span>${p.data?`<span>Aggiunto: ${esc(p.data)}</span>`:''}
       ${(p.fonti||[]).map(f=>`<a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.titolo)}</a>`).join('')}</div>
   </div>`;
   if(p.foto){fetch(p.foto).then(r=>r.blob()).then(b=>{const i=card.querySelector('.hero img');if(i)i.src=URL.createObjectURL(b);}).catch(()=>{});}
