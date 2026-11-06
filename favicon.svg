@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#f2f0eb"/>
+  <!-- globo -->
+  <circle cx="246" cy="262" r="118" fill="none" stroke="#dfe8e2" stroke-width="34"/>
+  <path d="M128 262 A118 118 0 0 1 246 144" fill="none" stroke="#6f8f7d" stroke-width="34" stroke-linecap="round"/>
+  <g fill="none" stroke="#6f8f7d" stroke-width="9" stroke-linecap="round">
+    <ellipse cx="246" cy="262" rx="50" ry="101"/>
+    <line x1="146" y1="262" x2="346" y2="262"/>
+    <path d="M162 210 Q246 228 330 210"/>
+    <path d="M162 314 Q246 296 330 314"/>
+  </g>
+  <!-- pin -->
+  <g transform="translate(318 118)">
+    <path d="M0 -6 C-46 -6 -70 28 -58 64 C-48 94 -18 118 0 150 C18 118 48 94 58 64 C70 28 46 -6 0 -6 Z" fill="#2f6652" stroke="#f2f0eb" stroke-width="12" stroke-linejoin="round"/>
+    <circle cx="0" cy="50" r="20" fill="#f2f0eb"/>
+  </g>
+  <line x1="186" y1="420" x2="326" y2="420" stroke="#6f8f7d" stroke-width="14" stroke-linecap="round"/>
+</svg>
