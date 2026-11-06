@@ -81,6 +81,9 @@ html,body{margin:0;height:100%;background:var(--sea);font-family:Roboto,-apple-s
 .meta a{color:var(--muted)}
 .badge{display:inline-block;margin-top:10px;font-size:11px;color:#8a5a00;background:#fff3d6;border:1px solid #f0d9a0;padding:3px 8px;border-radius:6px}
 
+.loc{float:right;width:92px;margin:4px 0 8px 14px;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.18);cursor:zoom-in;background:#eee;aspect-ratio:7/10;object-fit:cover}
+#zoom{position:fixed;inset:0;z-index:2000;background:rgba(20,18,14,.88);display:none;align-items:center;justify-content:center;padding:20px;cursor:zoom-out}
+#zoom.open{display:flex}#zoom img{max-width:100%;max-height:100%;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
 /* stato vuoto / suggerimento */
 #hint{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:800;background:rgba(43,42,39,.86);color:#fff;font-size:13px;padding:9px 14px;border-radius:99px;transition:opacity .4s;white-space:nowrap}
 #hint.hide{opacity:0;pointer-events:none}
@@ -97,6 +100,7 @@ html,body{margin:0;height:100%;background:var(--sea);font-family:Roboto,-apple-s
 <div id="hint">Avvicinati a un pin per aprire la scheda</div>
 
 <aside id="card" aria-live="polite"></aside>
+<div id="zoom"><img alt="Locandina"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
@@ -175,13 +179,14 @@ function openCard(p){
     <div class="where"><svg viewBox="0 0 24 24">${PIN_ICO}</svg>${esc(p.luogo)}</div>
     ${p.quando?`<div class="where" style="margin-top:4px"><svg viewBox="0 0 24 24"><path d="M7 2h2v2h6V2h2v2h3v18H4V4h3zm-1 7v11h12V9z"/></svg>${esc(p.quando)}</div>`:''}
     ${p.esempio?'<span class="badge">Scheda di esempio</span>':''}
-    <p class="sintesi">${esc(p.sintesi)}</p>
+    <p class="sintesi">${p.locandina?'<img class="loc" alt="Locandina">':''}${esc(p.sintesi)}</p>
     ${p.punti&&p.punti.length?`<div class="sec"><h3>Da sapere</h3><ul>${p.punti.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`:''}
     ${p.curiosita?`<div class="sec"><h3>Curiosità</h3><div class="curio">${esc(p.curiosita)}</div></div>`:''}
     <div class="meta"><span>${p.lat.toFixed(4)}, ${p.lng.toFixed(4)}</span>${p.data?`<span>Aggiunto: ${esc(p.data)}</span>`:''}
       ${(p.fonti||[]).map(f=>`<a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.titolo)}</a>`).join('')}</div>
   </div>`;
   if(p.foto){fetch(p.foto).then(r=>r.blob()).then(b=>{const i=card.querySelector('.hero img');if(i)i.src=URL.createObjectURL(b);}).catch(()=>{});}
+  if(p.locandina){fetch(p.locandina).then(r=>r.blob()).then(b=>{const u=URL.createObjectURL(b);const i=card.querySelector('.loc');if(i){i.src=u;i.onclick=()=>{const z=document.getElementById('zoom');z.querySelector('img').src=u;z.classList.add('open');};}}).catch(()=>{});}
   card.querySelector('.close').onclick=closeCard;
   card.classList.add('open');card.scrollTop=0;render();
 }
@@ -207,6 +212,7 @@ function legend(){
   }).join('');
   el.querySelectorAll('.lg-row').forEach(r=>r.onclick=()=>{const k=r.dataset.k;hidden.has(k)?hidden.delete(k):hidden.add(k);legend();render();});
 }
+document.getElementById('zoom').onclick=e=>e.currentTarget.classList.remove('open');
 document.getElementById('legendBtn').onclick=()=>document.getElementById('legend').classList.toggle('open');
 
 fetch('places.json').then(r=>r.json()).then(d=>{
